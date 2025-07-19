@@ -104,15 +104,17 @@ export default async function PostPage({ params }: PageProps) {
         <div className="flex gap-4">
           <button
             onClick={() => {
-              navigator.clipboard.writeText(window.location.href)
-              alert('链接已复制到剪贴板！')
+              if (typeof window !== 'undefined') {
+                navigator.clipboard.writeText(window.location.href)
+                alert('链接已复制到剪贴板！')
+              }
             }}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
           >
             复制链接
           </button>
           <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`}
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=https://my-wiki-thace-code.vercel.app/${post.slug}`}
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-500 transition-colors"
