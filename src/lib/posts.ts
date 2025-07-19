@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import remarkHtml from 'remark-html'
-import remarkPrism from 'remark-prism'
+// import remarkPrism from 'remark-prism'
 
 const postsDirectory = path.join(process.cwd(), 'content')
 
@@ -69,7 +69,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
     // 处理Markdown内容
     const processedContent = await remark()
-      .use(remarkPrism)
       .use(remarkHtml, { sanitize: false })
       .process(content)
     
