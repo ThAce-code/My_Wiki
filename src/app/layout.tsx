@@ -1,8 +1,5 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import Navigation from '@/components/Navigation'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: '我的技术Wiki',
@@ -16,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className={inter.className}>
+      <body className="font-sans">
         <div className="min-h-screen bg-gray-50">
           <Navigation />
           <main className="container mx-auto px-4 py-8">
