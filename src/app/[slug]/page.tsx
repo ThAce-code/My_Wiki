@@ -22,12 +22,20 @@ export default function PostPage({ params }: PageProps) {
 
   useEffect(() => {
     const loadPost = async () => {
-      const postData = await getPostBySlug(params.slug)
-      if (!postData) {
+      try {
+        const response = await fetch(`/api/posts/${params.slug}`)
+        if (!response.ok) {
+          notFound()
+          return
+        }
+        const postData = await response.json()
+        setPost(postData)
+      } catch (error) {
+        console.error('Error loading post:', error)
         notFound()
+      } finally {
+        setLoading(false)
       }
-      setPost(postData)
-      setLoading(false)
     }
     loadPost()
   }, [params.slug])
