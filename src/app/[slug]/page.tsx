@@ -17,7 +17,14 @@ interface PageProps {
 // 注意：客户端组件不能使用 generateStaticParams 和 generateMetadata
 
 export default function PostPage({ params }: PageProps) {
-  const [post, setPost] = useState<any>(null)
+  const [post, setPost] = useState<{
+    slug: string
+    title: string
+    content: string
+    date: string
+    tags: string[]
+    readTime?: number
+  } | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -95,7 +102,7 @@ export default function PostPage({ params }: PageProps) {
         {/* 标签 */}
         {post.tags && post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-8">
-            {post.tags.map((tag) => (
+            {post.tags.map((tag: string) => (
               <Link
                 key={tag}
                 href={`/tags/${tag}`}
