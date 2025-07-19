@@ -1,9 +1,12 @@
+'use client'
+
 import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale'
 import { getPostBySlug, getAllPosts } from '@/lib/posts'
 import MarkdownRenderer from '@/components/MarkdownRenderer'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface PageProps {
   params: {
@@ -11,32 +14,36 @@ interface PageProps {
   }
 }
 
-// 生成静态路径
-export async function generateStaticParams() {
-  const posts = await getAllPosts()
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
-}
+// 注意：客户端组件不能使用 generateStaticParams 和 generateMetadata
 
-// 生成元数据
-export async function generateMetadata({ params }: PageProps) {
-  const post = await getPostBySlug(params.slug)
-  
-  if (!post) {
-    return {
-      title: '文章未找到',
+export default function PostPage({ params }: PageProps) {
+  const [post, setPost] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadPost = async () => {
+      const postData = await getPostBySlug(params.slug)
+      if (!postData) {
+        notFound()
+      }
+      setPost(postData)
+      setLoading(false)
     }
-  }
+    loadPost()
+  }, [params.slug])
 
-  return {
-    title: `${post.title} | 我的技术Wiki`,
-    description: post.excerpt,
+  if (loading) {
+    return (
+      <div className="max-w-4xl mx-auto">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded mb-4"></div>
+          <div className="h-4 bg-gray-200 rounded mb-2"></div>
+          <div className="h-4 bg-gray-200 rounded mb-8"></div>
+          <div className="h-64 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    )
   }
-}
-
-export default async function PostPage({ params }: PageProps) {
-  const post = await getPostBySlug(params.slug)
 
   if (!post) {
     notFound()
