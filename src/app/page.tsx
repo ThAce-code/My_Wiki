@@ -1,50 +1,11 @@
-'use client'
-
+// ❌ 不要写 'use client'，让它默认是 Server Component
 import { getAllPosts } from '@/lib/posts'
 import ArticleCard from '@/components/ArticleCard'
 import SearchBar from '@/components/SearchBar'
-import { useEffect, useState } from 'react'
 
-export default function Home() {
-  const [posts, setPosts] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const loadPosts = async () => {
-      const postsData = await getAllPosts()
-      setPosts(postsData)
-      setLoading(false)
-    }
-    loadPosts()
-  }, [])
-
-  if (loading) {
-    return (
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            我的技术Wiki 📚
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            记录学习过程，分享技术心得
-          </p>
-          <SearchBar />
-        </div>
-        <div className="animate-pulse">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-gray-200 rounded-lg p-6 h-24"></div>
-            <div className="bg-gray-200 rounded-lg p-6 h-24"></div>
-            <div className="bg-gray-200 rounded-lg p-6 h-24"></div>
-          </div>
-          <div className="space-y-6">
-            <div className="bg-gray-200 rounded-lg h-32"></div>
-            <div className="bg-gray-200 rounded-lg h-32"></div>
-            <div className="bg-gray-200 rounded-lg h-32"></div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+export default async function Home() {
+  // 服务端直接跑 getAllPosts，用 Node.js 的 fs 没问题
+  const posts = await getAllPosts()
 
   return (
     <div className="max-w-4xl mx-auto">
