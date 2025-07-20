@@ -13,10 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className="font-sans">
+      <head>
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+      </head>
+      <body className="font-sans m-0 p-0 overflow-x-hidden">
         <div className="min-h-screen bg-gray-50">
-          <Navigation />
-          <main className="container mx-auto px-4 py-8">
+          <main className="px-0 py-0">
             {children}
           </main>
           <footer className="bg-white border-t mt-12">

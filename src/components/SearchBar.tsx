@@ -22,11 +22,11 @@ export default function SearchBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="搜索技术文章..."
-          className="w-full px-4 py-3 pl-12 pr-4 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-4 py-2 pl-10 pr-4 text-white placeholder-white bg-white/25 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30"
         />
-        <div className="absolute inset-y-0 left-0 flex items-center pl-4">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
-            className="w-5 h-5 text-gray-400"
+            className="w-4 h-4 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -45,7 +45,7 @@ export default function SearchBar() {
         >
           <span className="sr-only">搜索</span>
           <svg
-            className="w-5 h-5 text-gray-400 hover:text-gray-600"
+            className="w-4 h-4 text-white hover:text-gray-200"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

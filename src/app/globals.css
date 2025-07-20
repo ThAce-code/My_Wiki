@@ -56,3 +56,200 @@ pre code {
 .search-highlight {
   @apply bg-yellow-200 px-1 rounded;
 }
+
+/* 平滑滚动效果 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8a2be2, #4b0082);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #9932cc, #6a0dad);
+}
+
+/* 滚动动画效果 */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* 卡片悬停效果 */
+.card-hover {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card-hover::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(0, 47, 167, 0.6) 0%,
+    rgba(0, 47, 167, 0.4) 30%,
+    rgba(0, 47, 167, 0.2) 60%,
+    transparent 100%
+  );
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  filter: blur(10px);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(0, 47, 167, 0.4),
+    0 0 80px rgba(0, 47, 167, 0.3),
+    0 0 120px rgba(0, 47, 167, 0.2);
+}
+
+.card-hover:hover::before {
+  opacity: 1;
+}
+
+/* 文章卡片特殊悬停效果 */
+.article-card-hover {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.article-card-hover::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: 
+    linear-gradient(0deg, transparent 70%, rgba(0, 47, 167, 0.4) 100%),
+    linear-gradient(90deg, transparent 70%, rgba(0, 47, 167, 0.4) 100%),
+    linear-gradient(180deg, transparent 70%, rgba(0, 47, 167, 0.4) 100%),
+    linear-gradient(270deg, transparent 70%, rgba(0, 47, 167, 0.4) 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -2;
+  filter: blur(12px);
+}
+
+.article-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.15),
+    0 0 40px rgba(0, 47, 167, 0.4),
+    0 0 80px rgba(0, 47, 167, 0.3),
+    0 0 120px rgba(0, 47, 167, 0.2);
+}
+
+.article-card-hover:hover::before {
+  opacity: 1;
+}
+
+/* 英雄区域样式 */
+.hero-container-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.hero-container {
+  position: relative;
+  width: 100vw; /* 全屏宽度 */
+  height: 66.67vh; /* 占满2/3的视口高度 */
+  margin: 0;
+  padding-top: 0; /* 移除导航栏空间 */
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(75, 0, 130, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(147, 0, 211, 0.04) 0%, transparent 50%),
+    linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  border-radius: 0 0 24px 24px; /* 只有下方圆角 */
+  box-shadow: 
+    0 10px 40px -5px rgba(128, 0, 255, 0.8),
+    0 20px 60px 0px rgba(138, 43, 226, 0.6),
+    0 30px 80px 5px rgba(147, 0, 211, 0.4);
+}
+
+/* 粒子背景样式 */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+}
+
+/* 噪点纹理样式 */
+.hero-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.3;
+  z-index: 0;
+  border-radius: 0 0 24px 24px;
+  mix-blend-mode: overlay;
+}
+
+/* 标题光效样式 */
+.title-glow {
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.3),
+    0 0 10px rgba(138, 43, 226, 0.2),
+    0 0 15px rgba(138, 43, 226, 0.1);
+  animation: titlePulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes titlePulse {
+  0% {
+    text-shadow: 
+      0 0 5px rgba(255, 255, 255, 0.3),
+      0 0 10px rgba(138, 43, 226, 0.2),
+      0 0 15px rgba(138, 43, 226, 0.1);
+  }
+  100% {
+    text-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.5),
+      0 0 15px rgba(138, 43, 226, 0.3),
+      0 0 20px rgba(138, 43, 226, 0.15);
+  }
+}
+
