@@ -26,6 +26,9 @@ build/
 .DS_Store
 Thumbs.db
 
+# Executables
+acli.exe
+
 # Logs
 logs/
 *.log
