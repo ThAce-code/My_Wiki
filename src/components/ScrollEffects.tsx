@@ -10,11 +10,10 @@ export default function ScrollEffects() {
       
       window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset
-        
+
         // 黑框透明度变化
         if (heroContainer) {
-          const opacity = Math.max(0.3, 1 - scrollTop / 500)
-          heroContainer.style.opacity = opacity.toString()
+          (heroContainer as HTMLElement).style.opacity = Math.max(0.3, 1 - scrollTop / 500).toString()
         }
         
         // 滚动时显示元素动画
